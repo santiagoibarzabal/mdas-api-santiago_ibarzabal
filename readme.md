@@ -19,7 +19,10 @@
 npm install
 
 # Find pokemon type via cli. 
-npm run cli -- --name={pokemonName}
+npm run cli -- types --name={pokemonName}
+
+# Find pokemon type via API REST. 
+http://localhost:3000/type?pokemon_name={pokemonName}
 ```
 
 ## Testing
