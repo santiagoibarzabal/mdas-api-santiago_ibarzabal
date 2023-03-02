@@ -1,5 +1,7 @@
 import { Command } from "commander";
-import GetPokemonTypesController from "../controllers/get-pokemon-types.controller";
+import GetPokemonTypesUseCase from "../../application/use-cases/get-pokemon-types.use-case";
+import PokemonRepository from "../repositories/pokemon.repository";
+
 
 const CLI = () => {
 	const program = new Command();
@@ -12,8 +14,9 @@ const CLI = () => {
 		.requiredOption("-n, --name <name>", "Pokemon name")
 		.description("Return Pokemon types")
 		.action((options) => {
-			const getPokemonTypesController = new GetPokemonTypesController();
-			getPokemonTypesController.execute(options.name).then((types) => {
+			const getPokemonTypesUseCase = new GetPokemonTypesUseCase(new PokemonRepository())
+			
+			getPokemonTypesUseCase.execute(options.name).then((types) => {
 				console.log(types);
 			});
 		});
