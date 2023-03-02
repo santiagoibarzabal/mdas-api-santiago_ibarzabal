@@ -1,4 +1,5 @@
 import { PokemonRepositoryInterface } from "../../domain/interfaces/pokemon-repository.interface";
+import ModelNotFound from "../../domain/exceptions/pokemon-not-found.exception";
 
 class GetPokemonTypesUseCase {
   private pokemonRepository: PokemonRepositoryInterface;
@@ -8,8 +9,7 @@ class GetPokemonTypesUseCase {
   }
 
   async execute(name: string) {
-    const pokemon = await this.pokemonRepository.getPokemonByName(name);
-    return pokemon.types;
+    return await this.pokemonRepository.getPokemonByName(name);
   }
 }
 
