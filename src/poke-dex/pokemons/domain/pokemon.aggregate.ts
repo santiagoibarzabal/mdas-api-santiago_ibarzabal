@@ -14,6 +14,8 @@ class PokemonAggregate {
   public getTypes(): PokemonType[] {
     return this.types;
   }
+
+
 }
 
 export default PokemonAggregate;
