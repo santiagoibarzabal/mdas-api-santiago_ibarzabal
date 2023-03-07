@@ -1,5 +1,4 @@
 import { PokemonRepositoryInterface } from "../../domain/interfaces/pokemon-repository.interface";
-import ModelNotFound from "../../domain/exceptions/pokemon-not-found.exception";
 
 class GetPokemonTypesUseCase {
   private pokemonRepository: PokemonRepositoryInterface;
