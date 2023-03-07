@@ -6,6 +6,11 @@ class PokemonTypeEntity {
 		this.name = name;
 		this.url = url;
 	}
+
+	public getName(): string
+	{
+		return this.name;
+	}
 }
 
 export default PokemonTypeEntity;
