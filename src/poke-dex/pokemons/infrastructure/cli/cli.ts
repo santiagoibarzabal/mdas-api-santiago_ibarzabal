@@ -14,8 +14,8 @@ const CLI = () => {
     .description('Return Pokemon types')
     .action((options) => {
       const getPokemonTypesUseCase = new GetPokemonTypesUseCase(new PokemonRepository());
-      getPokemonTypesUseCase.execute(options.name).then((types) => {
-        console.log(types);
+      getPokemonTypesUseCase.execute(options.name).then((pokemon) => {
+        console.log(pokemon.getTypes());
       }).catch((error:any) => {
           if (error instanceof PokemonNotFoundException) {
               console.log("Pokemon not found");

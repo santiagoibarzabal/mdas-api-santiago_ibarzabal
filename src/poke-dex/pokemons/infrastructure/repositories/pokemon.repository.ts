@@ -1,11 +1,11 @@
 import { PokemonRepositoryInterface } from "../../domain/interfaces/pokemon-repository.interface";
-import PokemonEntity from "../../domain/entities/pokemon.entity";
+import PokemonAggregate from "../../domain/pokemon.aggregate";
 import PokemonType from "../../domain/entities/pokemon-type.entity";
 import PokemonNotFound from "../../domain/exceptions/pokemon-not-found.exception";
 import ConnectionError from "../../domain/exceptions/connection-error.exception";
 
 class PokemonRepository implements PokemonRepositoryInterface {
-  async getPokemonByName(name: string): Promise<PokemonEntity> {
+  async getPokemonByName(name: string): Promise<PokemonAggregate> {
     let response;
     try {
       response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
@@ -18,7 +18,7 @@ class PokemonRepository implements PokemonRepositoryInterface {
     }
     const pokemon = await response.json();
     const pokemonTypes = this.mapPokemonTypes(pokemon.types);
-    return new PokemonEntity(pokemon.id, pokemon.name, pokemonTypes);
+    return new PokemonAggregate(pokemon.id, pokemon.name, pokemonTypes);
   }
 
   private mapPokemonTypes(pokemonTypes: any[]): PokemonType[] {
