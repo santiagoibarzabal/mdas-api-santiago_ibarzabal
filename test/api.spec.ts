@@ -1,9 +1,14 @@
-/*
 import request from 'supertest';
+import app from '../src/poke-dex/pokemons/infrastructure/apirest/app';
 
-import app from '../src/app';
-
-describe('GET /api', () => {
-  it('should return 200 OK', () => request(app).get('/api').expect(200));
+afterAll(() => {
+    app.close();
 });
-*/
+
+describe('get types by pokemon', () => {
+    const test = () => {
+        request(app).get('/type?pokemon_name=pikachu')
+            .expect(200)
+    };
+  it('should return pokemom types', test);
+});
