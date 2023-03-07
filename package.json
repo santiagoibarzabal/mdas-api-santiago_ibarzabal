@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./dist/src/server.js",
-    "dev": "ts-node-dev ./src/infrastructure/apirest/app.ts",
+    "dev": "ts-node-dev src/poke-dex/pokemons/infrastructure/apirest/app.ts",
     "build": "tsc",
     "lint": "eslint --ignore-path .gitignore . --ext .ts",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest --verbose",
-    "cli": "ts-node -r tsconfig-paths/register ./src/infrastructure/cli/index.ts"
+    "cli": "ts-node -r tsconfig-paths/register src/poke-dex/pokemons/infrastructure/cli/index.ts"
   },
   "author": "",
   "license": "ISC",
