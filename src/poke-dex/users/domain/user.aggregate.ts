@@ -1,14 +1,29 @@
-import Pokemon from '../../pokemons/domain/pokemon.aggregate';
+import { UserPokemonAlreadyInFavouritesException } from "./exceptions/user-pokemon-already-in-favourites.exception";
 
 class UserAggregate {
   private id: number;
   private name: string;
-  private favouritePokemons: Pokemon[];
+  private favouritePokemonIds: number[];
 
-  constructor(id: number, name: string, favouritePokemons: Pokemon[] = []) {
+  constructor(id: number, name: string, favouritePokemonIds: number[] = []) {
     this.id = id;
     this.name = name;
-    this.favouritePokemons = favouritePokemons;
+    this.favouritePokemonIds = favouritePokemonIds;
+  }
+
+  public getId(): number {
+    return this.id;
+  }
+
+  public addFavouritePokemon(pokemonId: number): void {
+    this.validatePokemonIsAlreadyFavourite(pokemonId);
+    this.favouritePokemonIds.push(pokemonId);
+  }
+
+  private validatePokemonIsAlreadyFavourite(pokemonId: number) {
+    if (this.favouritePokemonIds.includes(pokemonId)) {
+      throw new UserPokemonAlreadyInFavouritesException();
+    }
   }
 }
 
