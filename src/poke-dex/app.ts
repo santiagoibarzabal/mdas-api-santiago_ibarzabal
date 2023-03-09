@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 
 import { registerPokemonRoutes } from "./pokemons/infrastructure/apirest/routes";
+import { registerUserRoutes } from "./users/infrastructure/apirest/routes";
 
 // Create Express server
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../public"), { maxAge: 31557600000 }));
 
 registerPokemonRoutes(app);
+registerUserRoutes(app);
 
 const server = app.listen(app.get("port"), () => {
 	console.log(
