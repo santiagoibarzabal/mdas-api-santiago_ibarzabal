@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../src/poke-dex/app';
+import app from '../../../../src/poke-dex/app';
 
 afterAll(() => {
     app.close();
