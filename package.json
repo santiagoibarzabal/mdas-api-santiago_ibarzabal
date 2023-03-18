@@ -9,7 +9,7 @@
     "build": "tsc",
     "lint": "eslint --ignore-path .gitignore . --ext .ts",
     "lint:fix": "npm run lint -- --fix",
-    "test": "env-cmd -f .env.testing concurrently --kill-others \"json-server ./json-server/db.json --id name\" \"jest --verbose\"",
+    "test": "env-cmd -f .env.testing concurrently --kill-others \"json-server ./json-server/db.json --port 3004 --id name\" \"jest --verbose\"",
     "cli": "env-cmd -f .env.development ts-node -r tsconfig-paths/register src/poke-dex/pokemons/infrastructure/cli/index.ts"
   },
   "author": "",
