@@ -1,0 +1,28 @@
+{
+  "pokemons": [
+    {
+      "id": 1,
+      "name": "pikachu",
+      "types": [
+        {
+          "type": {
+            "url": "http://localhost:3000/types/1",
+            "name": "electric"
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "charmander",
+      "types": [
+        {
+          "type": {
+            "url": "http://localhost:3000/types/2",
+            "name": "fire"
+          }
+        }
+      ]
+    }
+  ]
+}
