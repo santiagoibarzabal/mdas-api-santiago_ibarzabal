@@ -15,6 +15,10 @@ class UserAggregate {
     return this.id;
   }
 
+  public getFavouritePokemons(): number[] {
+    return this.favouritePokemonIds;
+  }
+
   public addFavouritePokemon(pokemonId: number): void {
     this.validatePokemonIsAlreadyFavourite(pokemonId);
     this.favouritePokemonIds.push(pokemonId);

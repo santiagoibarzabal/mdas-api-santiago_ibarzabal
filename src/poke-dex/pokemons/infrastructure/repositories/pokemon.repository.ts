@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PokemonRepositoryInterface } from "../../domain/interfaces/pokemon-repository.interface";
 import PokemonAggregate from "../../domain/pokemon.aggregate";
 import PokemonType from "../../domain/entities/pokemon-type.entity";
 import PokemonNotFound from "../../domain/exceptions/pokemon-not-found.exception";
 import ConnectionError from "../../domain/exceptions/connection-error.exception";
+import fetch from "cross-fetch";
 
 class PokemonRepository implements PokemonRepositoryInterface {
   async getPokemonByName(name: string): Promise<PokemonAggregate> {
