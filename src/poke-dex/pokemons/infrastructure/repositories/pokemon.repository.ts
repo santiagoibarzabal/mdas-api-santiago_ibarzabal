@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PokemonRepositoryInterface } from "../../domain/interfaces/pokemon-repository.interface";
 import PokemonAggregate from "../../domain/pokemon.aggregate";
 import PokemonType from "../../domain/entities/pokemon-type.entity";
 import PokemonNotFound from "../../domain/exceptions/pokemon-not-found.exception";
 import ConnectionError from "../../domain/exceptions/connection-error.exception";
+import fetch from "cross-fetch";
 
 class PokemonRepository implements PokemonRepositoryInterface {
   async getPokemonByName(name: string): Promise<PokemonAggregate> {
     let response;
     try {
-      response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+      response = await fetch(`${process.env.POKEAPI_URL}${process.env.POKEAPI_GET_POKEMON_ENDPOINT}${name}`);
     }
     catch (Error) {
       throw new ConnectionError();

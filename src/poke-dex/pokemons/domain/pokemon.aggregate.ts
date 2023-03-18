@@ -15,6 +15,9 @@ class PokemonAggregate {
     return this.types;
   }
 
+  public getName(): string {
+    return this.name;
+  }
 
 }
 
