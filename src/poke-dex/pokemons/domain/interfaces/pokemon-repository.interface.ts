@@ -1,5 +1,5 @@
 import PokemonAggregate from '../pokemon.aggregate';
 
-export interface PokemonRepositoryInterface {
+export interface PokemonRepository {
   getPokemonByName(name: string): Promise<PokemonAggregate>;
 }

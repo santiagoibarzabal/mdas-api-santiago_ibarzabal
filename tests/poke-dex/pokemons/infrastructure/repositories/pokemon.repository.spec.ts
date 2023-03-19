@@ -1,8 +1,8 @@
-import PokemonRepository from "../../../../../src/poke-dex/pokemons/infrastructure/repositories/pokemon.repository";
+import RestPokemonRepository from "../../../../../src/poke-dex/pokemons/infrastructure/repositories/rest-pokemon.repository";
 import PokemonAggregate from "../../../../../src/poke-dex/pokemons/domain/pokemon.aggregate";
 
-describe("PokemonRepository", () => {
-  const pokemonRepository = new PokemonRepository();
+describe("RestPokemonRepository", () => {
+  const pokemonRepository = new RestPokemonRepository();
 
   describe("getPokemonByName", () => {
 

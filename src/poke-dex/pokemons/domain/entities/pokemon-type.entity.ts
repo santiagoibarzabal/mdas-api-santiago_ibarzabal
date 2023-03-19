@@ -7,8 +7,7 @@ class PokemonTypeEntity {
 		this.url = url;
 	}
 
-	public getName(): string
-	{
+	public getName(): string {
 		return this.name;
 	}
 }

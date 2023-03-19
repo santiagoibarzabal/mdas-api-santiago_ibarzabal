@@ -1,5 +1,4 @@
-# Pokemon DDD Project. 
-
+# Pokemon DDD Project.
 
 ## Tools
 
@@ -14,16 +13,27 @@
 
 ## Running the app
 
-```
-# install dependencies
-npm install
+### Install dependencies
 
-# Find pokemon type via cli. 
-npm run cli -- types --name={pokemonName}
-
-# Find pokemon type via API REST. 
-http://localhost:3000/type?pokemon_name={pokemonName}
 ```
+$ npm install
+```
+
+### Find pokemon type via cli.
+
+```
+$ npm run cli -- types --name={pokemonName}
+```
+
+### Find pokemon type via API REST.
+
+- Start server
+
+  ```
+  $ npm run dev
+  ```
+
+- On browser -> http://localhost:3000/type?pokemon_name={pokemonName}
 
 ## Testing
 

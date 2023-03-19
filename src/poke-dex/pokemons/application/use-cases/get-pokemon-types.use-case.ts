@@ -1,9 +1,9 @@
-import { PokemonRepositoryInterface } from "../../domain/interfaces/pokemon-repository.interface";
+import { PokemonRepository } from "../../domain/interfaces/pokemon-repository.interface";
 
 class GetPokemonTypesUseCase {
-  private pokemonRepository: PokemonRepositoryInterface;
+  private pokemonRepository: PokemonRepository;
 
-  constructor(pokemonRepository: PokemonRepositoryInterface) {
+  constructor(pokemonRepository: PokemonRepository) {
     this.pokemonRepository = pokemonRepository;
   }
 
