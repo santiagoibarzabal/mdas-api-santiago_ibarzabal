@@ -1,11 +1,12 @@
 import PokemonType from "./entities/pokemon-type.entity"
+import { PokemonId, PokemonName } from "./value-objects";
 
 class PokemonAggregate {
-  private readonly id: number;
-  private readonly name: string;
+  private readonly id: PokemonId;
+  private readonly name: PokemonName;
   private readonly types: PokemonType[];
 
-  constructor(id: number, name: string, types: PokemonType[]) {
+  constructor(id: PokemonId, name: PokemonName, types: PokemonType[]) {
     this.id = id;
     this.name = name;
     this.types = types;
@@ -15,7 +16,7 @@ class PokemonAggregate {
     return this.types;
   }
 
-  public getName(): string {
+  public getName(): PokemonName {
     return this.name;
   }
 

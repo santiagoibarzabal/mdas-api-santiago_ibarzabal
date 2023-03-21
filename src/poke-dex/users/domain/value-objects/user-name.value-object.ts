@@ -11,7 +11,7 @@ class UserNameValueObject {
     this._value = value;
   }
 
-  get value(): string {
+  public get value(): string {
     return this._value;
   }
 

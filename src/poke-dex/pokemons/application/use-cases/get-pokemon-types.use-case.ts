@@ -1,4 +1,5 @@
 import { PokemonRepository } from "../../domain/interfaces/pokemon-repository.interface";
+import { PokemonName } from "../../domain/value-objects";
 
 class GetPokemonTypesUseCase {
   private pokemonRepository: PokemonRepository;
@@ -8,7 +9,7 @@ class GetPokemonTypesUseCase {
   }
 
   async execute(name: string) {
-    return await this.pokemonRepository.getPokemonByName(name);
+    return await this.pokemonRepository.getPokemonByName(new PokemonName(name));
   }
 }
 

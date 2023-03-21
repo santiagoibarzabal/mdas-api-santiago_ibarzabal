@@ -17,7 +17,7 @@ const CLI = () => {
       const getPokemonTypesUseCase = new GetPokemonTypesUseCase(new RestPokemonRepository());
       getPokemonTypesUseCase.execute(options.name).then((pokemon) => {
         const pokemonNames = pokemon.getTypes().map((pokemonType) => {
-          return pokemonType.getName();
+          return pokemonType.getName().value;
         });
         const outputMessage = `Pokemon types for ${options.name}: ${pokemonNames.join(', ')}`;
         console.log(outputMessage);

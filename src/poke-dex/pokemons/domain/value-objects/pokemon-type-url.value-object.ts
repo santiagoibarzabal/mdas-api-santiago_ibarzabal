@@ -3,7 +3,7 @@ import { PokemonInvalidTypeUrlException } from '../exceptions/pokemon-invalid-ty
 class PokemonTypeUrlValueObject {
   private readonly _value: string;
   private _patternRegex = new RegExp(
-    /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/,
+    /(http|https)?:\/\/(\S+)/
   );
 
   constructor(value: string) {

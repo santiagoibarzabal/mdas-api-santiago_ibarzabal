@@ -1,4 +1,6 @@
 import { UserRepositoryInterface } from "../../domain/interfaces/user-repository.interface";
+import { UserId } from "../../domain/value-objects";
+import { PokemonId } from "../../../pokemons/domain/value-objects";
 
 class AddPokemonToUserFavouritesUseCase {
   private repository: UserRepositoryInterface;
@@ -8,7 +10,7 @@ class AddPokemonToUserFavouritesUseCase {
   }
 
   execute(userId: number, pokemonId: number): void {
-    this.repository.addFavouritePokemon(userId, pokemonId);
+    this.repository.addFavouritePokemon(new UserId(userId), new PokemonId(pokemonId));
   }
 }
 
