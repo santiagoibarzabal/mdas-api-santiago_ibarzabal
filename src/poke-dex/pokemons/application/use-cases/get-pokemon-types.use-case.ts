@@ -1,14 +1,15 @@
-import { PokemonRepositoryInterface } from "../../domain/interfaces/pokemon-repository.interface";
+import { PokemonRepository } from "../../domain/interfaces/pokemon-repository.interface";
+import { PokemonName } from "../../domain/value-objects";
 
 class GetPokemonTypesUseCase {
-  private pokemonRepository: PokemonRepositoryInterface;
+  private pokemonRepository: PokemonRepository;
 
-  constructor(pokemonRepository: PokemonRepositoryInterface) {
+  constructor(pokemonRepository: PokemonRepository) {
     this.pokemonRepository = pokemonRepository;
   }
 
   async execute(name: string) {
-    return await this.pokemonRepository.getPokemonByName(name);
+    return await this.pokemonRepository.getPokemonByName(new PokemonName(name));
   }
 }
 

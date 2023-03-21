@@ -1,14 +1,15 @@
-class PokemonTypeEntity {
-	private name: string;
-	private url: string;
+import { PokemonTypeName, PokemonTypeUrl } from "../value-objects";
 
-	constructor(name: string, url: string) {
+class PokemonTypeEntity {
+	private readonly name: PokemonTypeName;
+	private readonly url: PokemonTypeUrl;
+
+	constructor(name: PokemonTypeName, url: PokemonTypeUrl) {
 		this.name = name;
 		this.url = url;
 	}
 
-	public getName(): string
-	{
+	public getName(): PokemonTypeName {
 		return this.name;
 	}
 }

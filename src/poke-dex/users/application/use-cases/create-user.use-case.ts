@@ -2,6 +2,7 @@ import UserAggregate from "../../domain/user.aggregate";
 import UserCreatorService from "../../domain/services/user-creator.service";
 import CreateUserDTO from "../dtos/create-user.dto";
 import { UserRepositoryInterface } from "../../domain/interfaces/user-repository.interface";
+import { UserId, UserName } from "../../domain/value-objects";
 
 class CreateUserUseCase {
   private creatorService: UserCreatorService;
@@ -12,7 +13,10 @@ class CreateUserUseCase {
   }
 
   execute(userDto: CreateUserDTO): void {
-    const newUser = new UserAggregate(userDto.id, userDto.name);
+    const newUser = new UserAggregate(
+      new UserId(userDto.id),
+      new UserName(userDto.name),
+    );
     this.creatorService.create(newUser);
   }
 }

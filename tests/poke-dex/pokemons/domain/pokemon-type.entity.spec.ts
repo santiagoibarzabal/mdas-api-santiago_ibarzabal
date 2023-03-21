@@ -1,4 +1,5 @@
 import PokemonTypeEntity from "../../../../src/poke-dex/pokemons/domain/entities/pokemon-type.entity";
+import { PokemonTypeName, PokemonTypeUrl } from "../../../../src/poke-dex/pokemons/domain/value-objects";
 
 describe("PokemonTypeEntity", () => {
   it("should be defined", () => {
@@ -7,8 +8,8 @@ describe("PokemonTypeEntity", () => {
 
   it("should be able to create a new instance", () => {
     // Given
-    const name = "grass";
-    const url = "https://pokeapi.co/api/v2/type/12/";
+    const name = new PokemonTypeName("grass");
+    const url = new PokemonTypeUrl("https://pokeapi.co/api/v2/type/12/");
 
     // When
     const pokemonTypeEntity = new PokemonTypeEntity(name, url);

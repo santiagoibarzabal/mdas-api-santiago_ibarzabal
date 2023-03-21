@@ -1,5 +1,6 @@
 import PokemonAggregate from '../pokemon.aggregate';
+import { PokemonName } from "../value-objects";
 
-export interface PokemonRepositoryInterface {
-  getPokemonByName(name: string): Promise<PokemonAggregate>;
+export interface PokemonRepository {
+  getPokemonByName(name: PokemonName): Promise<PokemonAggregate>;
 }
