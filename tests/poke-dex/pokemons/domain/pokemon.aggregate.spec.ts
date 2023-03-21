@@ -1,10 +1,11 @@
 import PokemonAggregate from "../../../../src/poke-dex/pokemons/domain/pokemon.aggregate";
 import PokemonTypeEntity from "../../../../src/poke-dex/pokemons/domain/entities/pokemon-type.entity";
 import {
+  PokemonHeight,
   PokemonId,
   PokemonName,
   PokemonTypeName,
-  PokemonTypeUrl
+  PokemonTypeUrl, PokemonWeight
 } from "../../../../src/poke-dex/pokemons/domain/value-objects";
 
 jest.mock("../../../../src/poke-dex/pokemons/domain/entities/pokemon-type.entity");
@@ -19,9 +20,11 @@ describe("PokemonAggregate", () => {
     // Given
     const id = new PokemonId(1);
     const name = new PokemonName("Bulbasaur");
+    const height = new PokemonHeight(20);
+    const weight = new PokemonWeight(20);
 
     // When
-    const pokemonAggregate = new PokemonAggregate(id, name, []);
+    const pokemonAggregate = new PokemonAggregate(id, name, [], height, weight);
 
     // Then
     expect(pokemonAggregate).toBeDefined();
@@ -34,9 +37,10 @@ describe("PokemonAggregate", () => {
     const name = new PokemonName("Bulbasaur");
     const grassTypeMock = new mockedPokemonTypeEntity(new PokemonTypeName("grass"), new PokemonTypeUrl("https://pokeapi.co/api/v2/type/12/"));
     const poisonTypeMock = new mockedPokemonTypeEntity(new PokemonTypeName("poison"), new PokemonTypeUrl("https://pokeapi.co/api/v2/type/4/"));
-
+    const height = new PokemonHeight(20);
+    const weight = new PokemonWeight(20);
     // When
-    const pokemonAggregate = new PokemonAggregate(id, name, [grassTypeMock, poisonTypeMock]);
+    const pokemonAggregate = new PokemonAggregate(id, name, [grassTypeMock, poisonTypeMock], height, weight);
 
     // Then
     expect(pokemonAggregate).toBeDefined();
