@@ -1,4 +1,5 @@
 import UserAggregate from "../../../../src/poke-dex/users/domain/user.aggregate";
+import { UserId, UserName } from "../../../../src/poke-dex/users/domain/value-objects";
 
 describe("User aggregate tests", () => {
 
@@ -8,8 +9,8 @@ describe("User aggregate tests", () => {
 
     it("should be able to create a new instance", () => {
       // Given
-      const id = 1;
-      const name = 'Test';
+      const id = new UserId(1);
+      const name = new UserName('Test');
   
       // When
       const userAggregate = new UserAggregate(id, name);
@@ -20,8 +21,8 @@ describe("User aggregate tests", () => {
 
     it("should be able to create a new instance with some favorites pokemons", () => {
       // Given
-      const id = 1;
-      const name = 'Test';
+      const id = new UserId(1);
+      const name = new UserName('Test');
       const favouritePokemonIds = [4, 11]
   
       // When

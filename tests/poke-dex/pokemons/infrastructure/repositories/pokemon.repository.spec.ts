@@ -1,5 +1,8 @@
 import RestPokemonRepository from "../../../../../src/poke-dex/pokemons/infrastructure/repositories/rest-pokemon.repository";
 import PokemonAggregate from "../../../../../src/poke-dex/pokemons/domain/pokemon.aggregate";
+import { PokemonId, PokemonName } from "../../../../../src/poke-dex/pokemons/domain/value-objects";
+import PokemonNameValueObject
+  from "../../../../../src/poke-dex/pokemons/domain/value-objects/pokemon-name.value-object";
 
 describe("RestPokemonRepository", () => {
   const pokemonRepository = new RestPokemonRepository();
@@ -8,7 +11,7 @@ describe("RestPokemonRepository", () => {
 
     it("should return a PokemonAggregate", async () => {
       // Given
-      const pokemonName = "pikachu";
+      const pokemonName = new PokemonName("pikachu");
 
       // When
       const pokemon = await pokemonRepository.getPokemonByName(pokemonName);
@@ -20,7 +23,7 @@ describe("RestPokemonRepository", () => {
 
     it("should throw an error when the pokemon is not found", async () => {
       // Given
-      const pokemonName = "pikachuu";
+      const pokemonName = new PokemonName("pikachuu");
 
       // When
       const pokemon = pokemonRepository.getPokemonByName(pokemonName);

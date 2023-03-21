@@ -2,6 +2,7 @@ import UserCreatorService from "../../../../src/poke-dex/users/domain/services/u
 import InMemoryUserRepository from "../../../../src/poke-dex/users/infrastructure/repository/in-memory-user.repository";
 import UserAggregate from "../../../../src/poke-dex/users/domain/user.aggregate";
 import { UserAlreadyExistsException } from "../../../../src/poke-dex/users/domain/exceptions/user-already-exists.exception";
+import { UserId, UserName } from "../../../../src/poke-dex/users/domain/value-objects";
 
 describe("User creator service tests", () => {
 
@@ -13,9 +14,9 @@ describe("User creator service tests", () => {
         // Given
         const repository = new InMemoryUserRepository 
         const creator = new UserCreatorService(repository);
-        const userId = 1
-        const name = 'Test'
-        const user = new UserAggregate(userId, name)        
+        const userId = new UserId(1)
+        const name = new UserName('Test');
+        const user = new UserAggregate(userId, name);
     
         // When
         creator.create(user)
@@ -29,8 +30,8 @@ describe("User creator service tests", () => {
         // Given
         const repository = new InMemoryUserRepository 
         const creator = new UserCreatorService(repository);
-        const userId = 1
-        const name = 'Test'
+        const userId = new UserId(1);
+        const name = new UserName('Test');
         const user = new UserAggregate(userId, name)        
     
         // When
