@@ -16,6 +16,7 @@ class UserNameValueObject {
   }
 
   private validate(value: string): boolean {
+    if (value === undefined) return false
     return this._patternRegex.test(value);
   }
 }

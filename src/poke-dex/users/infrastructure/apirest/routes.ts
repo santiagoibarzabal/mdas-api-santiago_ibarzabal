@@ -12,7 +12,7 @@ export const registerUserRoutes = (app: Application): void => {
     try {
       const userDto = new CreateUserDTO();
       userDto.id = req.body.id;
-      userDto.name = req.body.name;
+      userDto.name = req.body.name;      
 
       const createUserUseCase = new CreateUserUseCase(new InMemoryUserRepository());
       createUserUseCase.execute(userDto);
