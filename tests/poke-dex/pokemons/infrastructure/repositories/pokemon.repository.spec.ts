@@ -51,4 +51,37 @@ describe("RestPokemonRepository", () => {
     });
 
   });
+
+  describe("getPokemonById", () => {
+
+    it("should return a PokemonAggregate", async () => {
+      // Given
+      const pokemonId = new PokemonId(1);
+
+      // When
+      const pokemon = await pokemonRepository.getPokemonById(pokemonId);
+
+      // Then
+      expect(pokemon).toBeInstanceOf(PokemonAggregate);
+      expect(pokemon.getId()).toEqual(pokemonId);
+    });
+
+    it("should throw an error when the pokemon is not found by id", async () => {
+      // Given
+      const pokemonId = new PokemonId(23232);
+
+      // When
+      const pokemon = pokemonRepository.getPokemonById(pokemonId);
+
+      // Then
+      await expect(pokemon).rejects.toThrowError();
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+  });
+
+
 });
