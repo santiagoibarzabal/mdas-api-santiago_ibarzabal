@@ -25,7 +25,7 @@ $ npm install
 $ npm run cli -- types --name={pokemonName}
 ```
 
-### Find pokemon type via API REST.
+### Use API REST.
 
 - Start server
 
@@ -33,7 +33,38 @@ $ npm run cli -- types --name={pokemonName}
   $ npm run dev
   ```
 
-- On browser -> http://localhost:3000/type?pokemon_name={pokemonName}
+- Find pokemon type via API REST.
+
+  On browser (GET) -> http://localhost:3000/type?pokemon_name={pokemonName}
+
+- Find pokemon details via API REST.
+
+  On browser (GET) -> http://localhost:3000/pokemon/{pokemonId}
+
+- Create user via API REST.
+
+  On Postman (POST) -> http://localhost:3000/user
+
+  with raw JSON body:
+
+  ```
+  {
+      "name": "test",
+      "id": "1"
+  }
+  ```
+
+- Add favourite pokemon to user via API REST.
+
+  On Postman (PATCH) -> http://localhost:3000/user/{userId}/favourites
+
+  with raw JSON body:
+
+  ```
+  {
+      "pokemon_id": "1"
+  }
+  ```
 
 ## Testing
 
