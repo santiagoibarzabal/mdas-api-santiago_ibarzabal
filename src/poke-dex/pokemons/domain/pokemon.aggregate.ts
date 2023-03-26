@@ -1,4 +1,3 @@
-import UserIdValueObject from "../../users/domain/value-objects/user-id.value-object";
 import PokemonType from "./entities/pokemon-type.entity"
 import { PokemonId, PokemonName, PokemonHeight, PokemonWeight } from "./value-objects";
 

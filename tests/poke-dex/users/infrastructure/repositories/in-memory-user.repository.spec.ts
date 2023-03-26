@@ -1,7 +1,7 @@
 import InMemoryUserRepository from "../../../../../src/poke-dex/users/infrastructure/repository/in-memory-user.repository";
 import UserAggregate from "../../../../../src/poke-dex/users/domain/user.aggregate";
 import { UserId, UserName } from "../../../../../src/poke-dex/users/domain/value-objects";
-import { PokemonId, PokemonName } from "../../../../../src/poke-dex/pokemons/domain/value-objects";
+import { PokemonId } from "../../../../../src/poke-dex/pokemons/domain/value-objects";
 
 describe("InMemoryUserRepository", () => {
   let inMemoryUserRepository: InMemoryUserRepository;
@@ -42,7 +42,7 @@ describe("InMemoryUserRepository", () => {
         user.getId())?.getFavouritePokemons()
       ).toEqual(
         [pokemonId.value]
-        );
+      );
     });
 
     it("should not add a favourite pokemon to a user if the user does not exist", () => {

@@ -1,13 +1,13 @@
-import PokemonAggregate from "../../../../src/poke-dex/pokemons/domain/pokemon.aggregate";
+import PokemonAggregate from "../../../../../src/poke-dex/pokemons/domain/pokemon.aggregate";
 import {
   PokemonHeight,
   PokemonId,
   PokemonName, PokemonTypeName, PokemonTypeUrl,
   PokemonWeight
-} from "../../../../src/poke-dex/pokemons/domain/value-objects";
+} from "../../../../../src/poke-dex/pokemons/domain/value-objects";
 import GetPokemonDetails
-  from "../../../../src/poke-dex/pokemons/application/use-cases/get-pokemon-details.use-case";
-import PokemonType from "../../../../src/poke-dex/pokemons/domain/entities/pokemon-type.entity";
+  from "../../../../../src/poke-dex/pokemons/application/use-cases/get-pokemon-details.use-case";
+import PokemonType from "../../../../../src/poke-dex/pokemons/domain/entities/pokemon-type.entity";
 
 const pokemonType = new PokemonType(
   new PokemonTypeName("Electric"),
