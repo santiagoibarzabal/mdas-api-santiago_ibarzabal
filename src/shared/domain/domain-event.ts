@@ -1,7 +1,7 @@
 import DomainEventMetadata from "./domain-event-metadata";
 
 export default abstract class DomainEvent {
-    protected aggregateId: string;
+    protected aggregateId: number;
     protected metadata: DomainEventMetadata
     protected type: string;
 
@@ -10,7 +10,7 @@ export default abstract class DomainEvent {
     }
 
     protected constructor(
-        aggregateId: string,
+        aggregateId: number,
         type: string,
     ) {
         this.aggregateId = aggregateId;

@@ -1,9 +1,9 @@
 export default class DomainEventMetadata {
-    private readonly aggregateId: string;
+    private readonly aggregateId: number;
     private readonly occurredOn: Date;
 
     constructor(
-        aggregateId: string,
+        aggregateId: number,
     ) {
         this.aggregateId = aggregateId;
         this.occurredOn = new Date();

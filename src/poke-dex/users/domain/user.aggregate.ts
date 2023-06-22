@@ -1,11 +1,14 @@
 import { UserPokemonAlreadyInFavouritesException } from "./exceptions/user-pokemon-already-in-favourites.exception";
 import { UserId, UserName } from "./value-objects";
 import { PokemonId } from "../../pokemons/domain/value-objects";
+import DomainEvent from "../../../shared/domain/domain-event";
+import SelectPokemonAsFavorite from "./events/select-pokemon-as-favorite";
 
 class UserAggregate {
-  private id: UserId;
+  private readonly id: UserId;
   private name: UserName;
-  private favouritePokemonIds: number[];
+  private readonly favouritePokemonIds: number[];
+  private events: DomainEvent[] = [];
 
   constructor(id: UserId, name: UserName, favouritePokemonIds: number[] = []) {
     this.id = id;
@@ -24,6 +27,8 @@ class UserAggregate {
   public addFavouritePokemon(pokemonId: PokemonId): void {
     this.validatePokemonIsAlreadyFavourite(pokemonId);
     this.favouritePokemonIds.push(pokemonId.value);
+    const event = new SelectPokemonAsFavorite(this.id.value, pokemonId.value)
+    this.raise(event);
   }
 
   private validatePokemonIsAlreadyFavourite(pokemonId: PokemonId) {
@@ -31,6 +36,18 @@ class UserAggregate {
       throw new UserPokemonAlreadyInFavouritesException();
     }
   }
+
+  public pullDomainEvents(): DomainEvent[] {
+    const recordedEvents = this.events;
+    this.events = [];
+    return recordedEvents;
+  }
+
+  private raise(event: DomainEvent): void {
+    this.events.push(event);
+  }
+
+
 }
 
 export default UserAggregate;
