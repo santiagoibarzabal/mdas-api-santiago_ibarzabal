@@ -2,6 +2,7 @@ import { UserRepositoryInterface } from "../../domain/interfaces/user-repository
 import UserAggregate from "../../domain/user.aggregate";
 import { UserId } from "../../domain/value-objects";
 import { PokemonId } from "../../../pokemons/domain/value-objects";
+import { UserNotFoundException } from "../../domain/exceptions/user-not-found";
 
 class InMemoryUserRepository implements UserRepositoryInterface {
   private users: UserAggregate[] = [];
@@ -10,11 +11,13 @@ class InMemoryUserRepository implements UserRepositoryInterface {
     this.users.push(user);
   }
 
-  addFavouritePokemon(userId: UserId, pokemonId: PokemonId): void {
+  addFavouritePokemon(userId: UserId, pokemonId: PokemonId): UserAggregate {
     const user = this.users.find((user) => user.getId() === userId);
-    if (user) {
-      user.addFavouritePokemon(pokemonId);
+    if (!user) {
+      throw UserNotFoundException;
     }
+    user.addFavouritePokemon(pokemonId);
+    return user;
   }
 
   findUserById(userId: UserId): UserAggregate | undefined {
