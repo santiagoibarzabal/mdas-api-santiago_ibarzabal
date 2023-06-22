@@ -1,9 +1,9 @@
 import DomainEventMetadata from "./domain-event-metadata";
 
 export default abstract class DomainEvent {
-    private aggregateId: string;
-    private metadata: DomainEventMetadata
-    private readonly type: string;
+    protected aggregateId: string;
+    protected metadata: DomainEventMetadata
+    protected type: string;
 
     public eventType(): string {
         return this.type;

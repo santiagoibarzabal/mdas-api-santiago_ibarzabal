@@ -1,6 +1,6 @@
 export default class DomainEventMetadata {
-    private aggregateId: string;
-    private occurredOn: Date;
+    private readonly aggregateId: string;
+    private readonly occurredOn: Date;
 
     constructor(
         aggregateId: string,
