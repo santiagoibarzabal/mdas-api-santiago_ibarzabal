@@ -6,6 +6,7 @@ import AddPokemonToUserFavouritesUseCase from "../../application/use-cases/add-p
 import InMemoryUserRepository from "../repository/in-memory-user.repository";
 import { UserAlreadyExistsException } from "../../domain/exceptions/user-already-exists.exception";
 import { UserPokemonAlreadyInFavouritesException } from "../../domain/exceptions/user-pokemon-already-in-favourites.exception";
+import RabbitMqEventPublisher from "../../../../shared/infrastructure/rabbit-mq-event-publisher";
 
 export const registerUserRoutes = (app: Application): void => {
   app.post("/user", (req: Request, res: Response) => {
@@ -31,7 +32,7 @@ export const registerUserRoutes = (app: Application): void => {
       const userId = Number(req.params.userId);
       const pokemonId = req.body.pokemon_id;
 
-      const addPokemonToUserFavouritesUseCase = new AddPokemonToUserFavouritesUseCase(new InMemoryUserRepository());
+      const addPokemonToUserFavouritesUseCase = new AddPokemonToUserFavouritesUseCase(new InMemoryUserRepository(), new RabbitMqEventPublisher());
       addPokemonToUserFavouritesUseCase.execute(userId, pokemonId);
 
       return res.status(200).send('Pokemon added to favourites');
