@@ -1,7 +1,11 @@
 import DomainEvent from "../../../../shared/domain/domain-event";
 
 export default class SelectPokemonAsFavorite extends DomainEvent {
-  private pokemonId: number;
+  private readonly pokemonId: number;
+
+  public getPokemonId(): number {
+    return this.pokemonId;
+  }
 
   constructor(
     aggregateId: number,
