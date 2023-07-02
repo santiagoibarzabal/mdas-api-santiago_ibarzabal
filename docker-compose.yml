@@ -1,22 +1,28 @@
-version: '3'
-
+version: '3.9'
 services:
-    rabbitmq:
-        image: 'rabbitmq:3.7-management-alpine'
-        container_name: rabbitmq
-        restart: always
-        ports:
-            # The standard AMQP protocol port
-            - '5672:5672'
-            # HTTP management UI
-            - '15672:15672'
-        environment:
-            AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5'
-            RABBITMQ_DEFAULT_USER: rabbitmquser
-            RABBITMQ_DEFAULT_PASS: rabbitmqpassword
-        networks:
-            - local
+  rabbitmq:
+      image: 'rabbitmq:3.9-management-alpine'
+      container_name: rabbitmq
+      restart: always
+      ports:
+        - '5672:5672'
+        - '15672:15672'
+      environment:
+        AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5'
+        RABBITMQ_DEFAULT_USER: rabbitmquser
+        RABBITMQ_DEFAULT_PASS: rabbitmqpassword
+        RABBITMQ_USERNAME: rabbitmquser
+        RABBITMQ_PASSWORD: rabbitmqpassword
+        RABBITMQ_HOST: localhost
+      networks:
+        - pokedex
+      healthcheck:
+        test: ["CMD", "rabbitmq-diagnostics", "check_port_connectivity"]
+        interval: 5s
+        timeout: 15s
+        retries: 5
 
 networks:
-  local:
-    driver: bridge
+    pokedex:
+      driver: bridge
+
