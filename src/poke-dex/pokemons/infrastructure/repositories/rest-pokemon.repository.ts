@@ -28,7 +28,7 @@ class RestPokemonRepository implements PokemonRepository {
       new PokemonName(pokemon.name),
       pokemonTypes,
       new PokemonHeight(pokemon.height),
-      new PokemonWeight(pokemon.weight)
+      new PokemonWeight(pokemon.weight),
     );
   }
 
@@ -64,6 +64,9 @@ class RestPokemonRepository implements PokemonRepository {
     });
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  public update(pokemonAggregate: PokemonAggregate): void;
 }
 
 export default RestPokemonRepository;
