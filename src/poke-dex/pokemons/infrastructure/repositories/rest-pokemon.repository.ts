@@ -26,6 +26,7 @@ class RestPokemonRepository implements PokemonRepository {
     }
     const pokemon = await response.json();
     const pokemonTypes = this.mapPokemonTypes(pokemon.types);
+    const count = this.selectedAsFavoriteCount.get(pokemon.id) ?? 0;
 
     return new PokemonAggregate(
       new PokemonId(pokemon.id),
@@ -33,7 +34,7 @@ class RestPokemonRepository implements PokemonRepository {
       pokemonTypes,
       new PokemonHeight(pokemon.height),
       new PokemonWeight(pokemon.weight),
-      new PokemonTimesSelectedAsFavoriteCount(this.selectedAsFavoriteCount.get(pokemon.id) ?? 0)
+      new PokemonTimesSelectedAsFavoriteCount(count)
     );
   }
 
@@ -51,6 +52,7 @@ class RestPokemonRepository implements PokemonRepository {
     }
     const pokemon = await response.json();
     const pokemonTypes = this.mapPokemonTypes(pokemon.types);
+    const count = this.selectedAsFavoriteCount.get(pokemon.id) ?? 0;
 
     return new PokemonAggregate(
       new PokemonId(pokemon.id),
@@ -58,7 +60,7 @@ class RestPokemonRepository implements PokemonRepository {
       pokemonTypes,
       new PokemonHeight(pokemon.height),
       new PokemonWeight(pokemon.weight),
-      new PokemonTimesSelectedAsFavoriteCount(this.selectedAsFavoriteCount.get(pokemon.id) ?? 0)
+      new PokemonTimesSelectedAsFavoriteCount(count),
     );
   }
   private mapPokemonTypes(pokemonTypes: any[]): PokemonType[] {

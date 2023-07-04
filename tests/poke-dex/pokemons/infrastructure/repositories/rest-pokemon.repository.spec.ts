@@ -1,6 +1,14 @@
 import RestPokemonRepository from "../../../../../src/poke-dex/pokemons/infrastructure/repositories/rest-pokemon.repository";
 import PokemonAggregate from "../../../../../src/poke-dex/pokemons/domain/pokemon.aggregate";
-import { PokemonId, PokemonName } from "../../../../../src/poke-dex/pokemons/domain/value-objects";
+import {
+  PokemonHeight,
+  PokemonId,
+  PokemonName,
+  PokemonWeight
+} from "../../../../../src/poke-dex/pokemons/domain/value-objects";
+import PokemonTimesSelectedAsFavoriteCount
+  from "../../../../../src/poke-dex/pokemons/domain/value-objects/pokemon-times-selected-as-favorite-count";
+import PokemonAggregateBuilder from "../../domain/pokemon-aggregate-builder";
 
 describe("RestPokemonRepository", () => {
   const pokemonRepository = new RestPokemonRepository();
@@ -59,6 +67,24 @@ describe("RestPokemonRepository", () => {
 
       // Then
       await expect(pokemon).rejects.toThrowError();
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+  });
+
+  describe("update", () => {
+    it("should update Pokemon", async () => {
+      // Given
+      const timesSelected = new PokemonTimesSelectedAsFavoriteCount(100);
+      const pokemon = PokemonAggregateBuilder.create().withTimesSelectedAsFavorite(timesSelected).build();
+      // When
+      pokemonRepository.update(pokemon);
+      const updatedPokemon = await pokemonRepository.getPokemonById(pokemon.getId());
+      // Then
+      expect(updatedPokemon.selectedAsFavoriteCount().value).toBe(100);
     });
 
     afterEach(() => {
