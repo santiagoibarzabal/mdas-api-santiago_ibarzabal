@@ -23,7 +23,8 @@ const pokemon = new PokemonAggregate(
 
 const mockPokemonRepository = {
   getPokemonByName: jest.fn().mockReturnValue(pokemon), //
-  getPokemonById: jest.fn().mockReturnValue(pokemon) //
+  getPokemonById: jest.fn().mockReturnValue(pokemon), //
+  update: jest.fn().mockReturnValue(pokemon) //
 }
 
 describe('GetPokemonDetails', () => {

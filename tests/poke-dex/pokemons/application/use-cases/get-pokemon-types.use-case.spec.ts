@@ -24,7 +24,8 @@ describe('Pokemon use case unit test', () => {
         );
         const mockpokemonRepositoryimp = {
             getPokemonByName: jest.fn().mockReturnValue(pokemon), //
-            getPokemonById: jest.fn().mockReturnValue(pokemon) //
+            getPokemonById: jest.fn().mockReturnValue(pokemon), //
+            update: jest.fn().mockReturnValue(pokemon)
         }
         const getPokemonTypesUseCase = new GetPokemonTypesUseCase(mockpokemonRepositoryimp);
         getPokemonTypesUseCase.execute("Pikachu").then((pokemon) => {
