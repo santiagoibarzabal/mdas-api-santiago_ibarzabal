@@ -3,16 +3,17 @@ import UserAggregate from "../../domain/user.aggregate";
 import { UserId } from "../../domain/value-objects";
 import { PokemonId } from "../../../pokemons/domain/value-objects";
 import { UserNotFoundException } from "../../domain/exceptions/user-not-found";
+import { users } from "./users";
 
 class InMemoryUserRepository implements UserRepositoryInterface {
-  private users: UserAggregate[] = [];
+  private users: UserAggregate[] = users;
 
   save(user: UserAggregate): void {
     this.users.push(user);
   }
 
   addFavouritePokemon(userId: UserId, pokemonId: PokemonId): UserAggregate {
-    const user = this.users.find((user) => user.getId() === userId);
+    const user = this.users.find((user) => user.getId().value === userId.value);
     if (!user) {
       throw UserNotFoundException;
     }
