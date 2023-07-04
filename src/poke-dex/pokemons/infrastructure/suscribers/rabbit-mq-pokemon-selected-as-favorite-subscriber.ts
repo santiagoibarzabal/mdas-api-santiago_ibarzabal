@@ -5,6 +5,7 @@ import { PokemonRepository } from "../../domain/interfaces/pokemon-repository.in
 import { Subscriber } from "../../../../shared/domain/suscriber";
 import SelectPokemonAsFavorite from "../../../users/domain/events/select-pokemon-as-favorite";
 import { SelectPokemonAsFavoriteEventType } from "../../../users/domain/events/select-pokemon-as-favorite-event-type";
+import { ConnectionStatus } from "../../../../shared/domain/connection-status";
 
 class RabbitMQPokemonFavoritesSubscriber implements Subscriber {
   private readonly pokemonRepository: PokemonRepository;
@@ -21,22 +22,17 @@ class RabbitMQPokemonFavoritesSubscriber implements Subscriber {
     this.pokemonRepository = pokemonRepository;
   }
 
-  connect() {
+  public connect(): ConnectionStatus {
     amqp.connect(this.connectionConfig.url, this.connectionConfig.clientProperties, (error, connection) => {
       if (error) {
         throw error;
       }
-
       connection.createChannel((connErr, channel) => {
         if (connErr) {
           throw connErr;
         }
-
-        console.log('suscriber: ' + this.connectionConfig.queueName);
         channel.assertQueue(this.connectionConfig.queueName, { durable: true });
-
         channel.prefetch(1);
-
         channel.consume(this.connectionConfig.queueName, (msg) => {
           if (msg !== null) {
             this.on(JSON.parse(msg.content.toString()));
@@ -46,6 +42,7 @@ class RabbitMQPokemonFavoritesSubscriber implements Subscriber {
         });
       });
     });
+    return ConnectionStatus.OK;
   }
 
   on(event: SelectPokemonAsFavorite): void {

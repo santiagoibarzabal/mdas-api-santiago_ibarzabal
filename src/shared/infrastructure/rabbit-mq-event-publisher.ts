@@ -1,5 +1,6 @@
-import amqp, { Connection } from 'amqplib/callback_api'
+import amqp, { Connection } from "amqplib/callback_api";
 import DomainEvent from "../domain/domain-event";
+import { ConnectionStatus } from "../domain/connection-status";
 
 export default class RabbitMqEventPublisher {
   private connectionConfig;
@@ -14,7 +15,7 @@ export default class RabbitMqEventPublisher {
     }
   }
 
-  public publish = (events: DomainEvent[]): void => {
+  public publish = (events: DomainEvent[]): ConnectionStatus => {
     console.log('Connecting to RabbitMQ...')
     amqp.connect(this.connectionConfig.url, (connectionError: Error, connection: Connection) => {
       if (connectionError) {
@@ -30,9 +31,9 @@ export default class RabbitMqEventPublisher {
             const eventType = event.eventType();
             channel.assertQueue(`${this.connectionConfig.queueName}.${eventType}`, {});
             channel.sendToQueue(`${this.connectionConfig.queueName}.${eventType}`, Buffer.from(JSON.stringify(event)), {});
-            console.log(`publisher: ${this.connectionConfig.queueName}.${eventType}`);
         });
       })
     });
+    return ConnectionStatus.OK;
   }
 }
