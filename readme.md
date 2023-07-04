@@ -25,13 +25,22 @@ $ npm install
 $ npm run cli -- types --name={pokemonName}
 ```
 
-### Use API REST.
+### Use API REST with RabbitMQ
 
+###### Before executing Node server, RabbitMQ container should be started.
+- Start RabbitMQ docker container
+
+  ```
+  $ docker compose up -d
+  ```
+###### Once RabbitMQ container is up and running, Node server should be started. 
 - Start server
 
   ```
   $ npm run dev
   ```
+
+###### API should be working and its endpoints can be tested:
 
 - Find pokemon type via API REST.
 
