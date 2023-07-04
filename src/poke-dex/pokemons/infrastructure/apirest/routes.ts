@@ -29,7 +29,8 @@ export const registerPokemonRoutes = (app: Application): void => {
 				id: pokemon.getId().value,
 				name: pokemon.getName().value,
 				weight: pokemon.getWeight().value,
-				height: pokemon.getHeight().value
+				height: pokemon.getHeight().value,
+				timesSelectedAsFavorite: pokemon.selectedAsFavoriteCount().value
 			};
 			return res.status(200).send(jsonResponse);
 		}).catch((error: any) => {
