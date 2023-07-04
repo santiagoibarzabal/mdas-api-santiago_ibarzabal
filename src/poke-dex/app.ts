@@ -4,6 +4,7 @@ import path from "path";
 
 import { registerPokemonRoutes } from "./pokemons/infrastructure/apirest/routes";
 import { registerUserRoutes } from "./users/infrastructure/apirest/routes";
+import SubscribersRegisterer from "../shared/infrastructure/subscribers-registerer";
 
 // Create Express server
 export const app = express();
@@ -18,6 +19,8 @@ app.use(express.static(path.join(__dirname, "../public"), { maxAge: 31557600000 
 
 registerPokemonRoutes(app);
 registerUserRoutes(app);
+const subscriberRegisterer = new SubscribersRegisterer;
+subscriberRegisterer.registerRabbitMqPokemonSelectedAsFavoriteSubscriber();
 
 if (process.env.NODE_ENV !== "TEST") {
 	server = app.listen(app.get("port"), () => {
