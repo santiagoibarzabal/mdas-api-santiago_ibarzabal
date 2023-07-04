@@ -10,7 +10,7 @@
     "lint": "eslint --ignore-path .gitignore . --ext .ts",
     "lint:fix": "npm run lint -- --fix",
     "test": "env-cmd -f .env.testing concurrently --kill-others --success first \"json-server ./json-server/db.json --port 3004 --routes ./json-server/routes.json\" \"jest --verbose --forceExit\"",
-    "cli": "env-cmd -f .env.development ts-node -r tsconfig-paths/register src/poke-dex/pokemons/infrastructure/cli/index.ts",
+    "cli": "env-cmd -f .env.development ts-node -r tsconfig-paths/register src/poke-dex/pokemons/infrastructure/cli/index.ts"
   },
   "author": "",
   "license": "ISC",
