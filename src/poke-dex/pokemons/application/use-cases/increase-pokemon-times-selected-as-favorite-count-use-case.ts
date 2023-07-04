@@ -11,7 +11,7 @@ class IncreasePokemonTimesSelectedAsFavoriteCountUseCase {
     async execute(pokemon_id: number): Promise<void> {
         const pokemon = await this.pokemonRepository.getPokemonById(new PokemonId(pokemon_id));
         pokemon.incrementSelectedAsFavoriteCount();
-        await this.pokemonRepository.update(pokemon);
+        this.pokemonRepository.update(pokemon);
     }
 }
 
