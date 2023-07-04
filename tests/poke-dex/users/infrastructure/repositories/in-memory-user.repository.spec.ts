@@ -80,10 +80,7 @@ describe("InMemoryUserRepository", () => {
           inMemoryUserRepository.addFavouritePokemon(userId, pokemonId);
         }
         //then
-      ).toThrow(UserNotFoundException.name);
-
-      // Then
-
+      ).toThrow(new UserNotFoundException());
     });
   });
 });

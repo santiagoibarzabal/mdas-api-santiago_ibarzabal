@@ -15,7 +15,7 @@ class InMemoryUserRepository implements UserRepositoryInterface {
   addFavouritePokemon(userId: UserId, pokemonId: PokemonId): UserAggregate {
     const user = this.users.find((user) => user.getId().value === userId.value);
     if (!user) {
-      throw UserNotFoundException;
+      throw new UserNotFoundException();
     }
     user.addFavouritePokemon(pokemonId);
     return user;
