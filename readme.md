@@ -78,7 +78,7 @@ $ npm run cli -- types --name={pokemonName}
 ## Testing
 
 ### Jest with supertest
-
+###### NOTE: Make sure RabbitMQ image is up and running.  
 ```
 npm run test
 ```
