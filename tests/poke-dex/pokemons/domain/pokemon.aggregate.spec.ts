@@ -7,6 +7,7 @@ import {
   PokemonTypeName,
   PokemonTypeUrl, PokemonWeight
 } from "../../../../src/poke-dex/pokemons/domain/value-objects";
+import PokemonAggregateBuilder from "./pokemon-aggregate-builder";
 
 jest.mock("../../../../src/poke-dex/pokemons/domain/entities/pokemon-type.entity");
 const mockedPokemonTypeEntity = PokemonTypeEntity as jest.MockedClass<typeof PokemonTypeEntity>;
@@ -30,7 +31,6 @@ describe("PokemonAggregate", () => {
     expect(pokemonAggregate).toBeDefined();
   });
 
-
   it("should be able to create a new instance with pokemon types", () => {
     // Given
     const id = new PokemonId(1);
@@ -44,5 +44,15 @@ describe("PokemonAggregate", () => {
 
     // Then
     expect(pokemonAggregate).toBeDefined();
+  });
+
+  it("should be able to increment times selected as favorite count", () => {
+    // Given
+    const pokemonAggregate = PokemonAggregateBuilder.create().build();
+    // When
+    pokemonAggregate.incrementSelectedAsFavoriteCount();
+    pokemonAggregate.incrementSelectedAsFavoriteCount();
+    // Then
+    expect(pokemonAggregate.selectedAsFavoriteCount().value).toBe(2);
   });
 });
