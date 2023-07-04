@@ -10,7 +10,7 @@ export default class RabbitMqEventPublisher {
           connection_name: 'domain-events'
       },
       queueName: 'domain-events',
-      url: `amqp://:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}`
+      url: `amqp://${process.env.RABBITMQ_USER}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}`
     }
   }
 
@@ -28,8 +28,9 @@ export default class RabbitMqEventPublisher {
         }
         events.forEach((event) => {
             const eventType = event.eventType();
-            channel.assertQueue(`${this.connectionConfig.queueName}.${eventType}`, {})
+            channel.assertQueue(`${this.connectionConfig.queueName}.${eventType}`, {});
             channel.sendToQueue(`${this.connectionConfig.queueName}.${eventType}`, Buffer.from(JSON.stringify(event)), {});
+            console.log(`publisher: ${this.connectionConfig.queueName}.${eventType}`);
         });
       })
     });
