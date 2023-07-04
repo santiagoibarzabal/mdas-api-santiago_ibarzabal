@@ -1,4 +1,5 @@
 import DomainEvent from "../../../../shared/domain/domain-event";
+import { SelectPokemonAsFavoriteEventType } from "./select-pokemon-as-favorite-event-type";
 
 export default class SelectPokemonAsFavorite extends DomainEvent {
   readonly pokemonId: number;
@@ -7,7 +8,7 @@ export default class SelectPokemonAsFavorite extends DomainEvent {
     aggregateId: number,
     pokemonId: number
   ) {
-    super(aggregateId, "poke-dex.users.select-pokemon-as-favorite");
+    super(aggregateId, SelectPokemonAsFavoriteEventType);
     this.pokemonId = pokemonId;
   }
 

@@ -4,6 +4,7 @@ import amqp from 'amqplib/callback_api';
 import { PokemonRepository } from "../../domain/interfaces/pokemon-repository.interface";
 import { Subscriber } from "../../../../shared/domain/suscriber";
 import SelectPokemonAsFavorite from "../../../users/domain/events/select-pokemon-as-favorite";
+import { SelectPokemonAsFavoriteEventType } from "../../../users/domain/events/select-pokemon-as-favorite-event-type";
 
 class RabbitMQPokemonFavoritesSubscriber implements Subscriber {
   private readonly pokemonRepository: PokemonRepository;
@@ -14,7 +15,7 @@ class RabbitMQPokemonFavoritesSubscriber implements Subscriber {
       clientProperties: {
         connection_name: 'domain-events'
       },
-      queueName: "domain-events.poke-dex.users.select-pokemon-as-favorite",
+      queueName: `domain-events.${SelectPokemonAsFavoriteEventType}`,
       url: `amqp://${process.env.RABBITMQ_USER}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}`
     }
     this.pokemonRepository = pokemonRepository;
