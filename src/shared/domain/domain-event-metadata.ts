@@ -8,4 +8,12 @@ export default class DomainEventMetadata {
         this.aggregateId = aggregateId;
         this.occurredOn = new Date();
     }
+
+    public getAggregateId(): number {
+        return this.aggregateId;
+    }
+
+    public getOccurredOn(): Date {
+        return this.occurredOn;
+    }
 }
