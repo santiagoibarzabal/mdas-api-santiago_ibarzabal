@@ -7,6 +7,7 @@ import InMemoryUserRepository from "../repository/in-memory-user.repository";
 import { UserAlreadyExistsException } from "../../domain/exceptions/user-already-exists.exception";
 import { UserPokemonAlreadyInFavouritesException } from "../../domain/exceptions/user-pokemon-already-in-favourites.exception";
 import RabbitMqEventPublisher from "../../../../shared/infrastructure/rabbit-mq-event-publisher";
+import { UserNotFoundException } from "../../domain/exceptions/user-not-found";
 
 export const registerUserRoutes = (app: Application): void => {
   app.post("/user", (req: Request, res: Response) => {
@@ -37,6 +38,9 @@ export const registerUserRoutes = (app: Application): void => {
 
       return res.status(200).send('Pokemon added to favourites');
     } catch (error: any) {
+      if (error instanceof UserNotFoundException) {
+        return res.status(400).send('Pokemon cannot be added to favorites of an unexistent user');
+      }
       if (error instanceof UserPokemonAlreadyInFavouritesException) {
         return res.status(409).send('Pokemon already in favourites');
       }
