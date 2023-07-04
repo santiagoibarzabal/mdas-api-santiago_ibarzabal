@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, "../public"), { maxAge: 31557600000 
 
 registerPokemonRoutes(app);
 registerUserRoutes(app);
-const subscriberRegisterer = new SubscribersRegisterer;
+const subscriberRegisterer = new SubscribersRegisterer();
 subscriberRegisterer.registerRabbitMqPokemonSelectedAsFavoriteSubscriber();
 
 if (process.env.NODE_ENV !== "TEST") {
