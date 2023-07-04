@@ -2,7 +2,6 @@ import { UserRepositoryInterface } from "../../domain/interfaces/user-repository
 import { UserId } from "../../domain/value-objects";
 import { PokemonId } from "../../../pokemons/domain/value-objects";
 import EventPublisher from "../../../../shared/domain/event-publisher";
-import userAggregate from "../../domain/user.aggregate";
 import DomainEvent from "../../../../shared/domain/domain-event";
 import UserAggregate from "../../domain/user.aggregate";
 
